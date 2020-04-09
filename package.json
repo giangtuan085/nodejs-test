@@ -1,0 +1,17 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "devstart": "nodemon run index.js",
+    "stop": "nodemon quit",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "nodemon": "^1.19.4"
+  }
+}

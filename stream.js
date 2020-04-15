@@ -11,12 +11,32 @@ const fs = require('fs');
 // 	writeStream.write(data);
 // });
 
+// create Server
 const server = http.createServer((req, res) => {
 	console.log(`Request url: ${req.url}`);
-	res.writeHead(200, {'Content-type': 'text/plain'});
-	const readStream = fs.createReadStream(__dirname + '/example.txt', 'utf8');
-	readStream.pipe(res);
+	// serving data in file
+	// serveContent(res, false, 'text/plain', '/example.txt');
+
+	// serving html
+	// serveContent(res, 'text/html', '/index.html');
+
+	// serving json
+	serveContent(res, true, 'application/json');
 });
+
+const serveContent = (res, json = false, contentType, file, encoding = 'utf8') => {
+	res.writeHead(200, {'Content-type': contentType});
+	if (json) {
+		const obj = {
+			name: 'cat',
+			age: 12
+		};
+		res.end(JSON.stringify(obj));
+	} else {
+		const readStream = fs.createReadStream(__dirname + file, encoding);
+		readStream.pipe(res);
+	}
+};
 
 server.listen(3000, '127.0.0.1');
 console.log('Now listening to port 3k');

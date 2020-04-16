@@ -9,6 +9,8 @@ const server = http.createServer((req, res) => {
 		serveContent(res, true, 'application/json');
 	} else if (req.url === '/home') {
 		serveContent(res, false, 'text/html', '/index.html');
+	} else if (req.url === '/api/cat2') {
+		serveContent(res, true, 'application/json');
 	} else {
 		serveContent(res, false, 'text/html', '/error.html');
 	}
